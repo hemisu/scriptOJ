@@ -1,13 +1,16 @@
 /**
 
 
-完成正则表达式 TRIM_REGX，可以用它来删除一个字符串前后多余的空白字符。
-
-例如：
-```js
-' ScriptOJ   '.replace(TRIM_REGX, '') // => ScriptOJ
-```
-注意：你只需要完成正则表达式的编写。
+完成函数 commafy，它接受一个数字作为参数，返回一个字符串，可以把整数部分从右到左每三位数添加一个逗号，
+如：12000000.11 转化为 12,000,000.11。
 
 */
-const TRIM_REGX = /^\s+|\s+$/g;
+
+function commafy (num) {
+  /* TODO */
+  if(typeof num !== 'number') return false;
+  const arr = num.toString().split('.');
+  if(arr.length > 2) return false;
+  const decimal = arr[1] ? `.${arr[1]}` : ``;
+  return arr[0].replace(/\B(?=(?:\d{3})+$)/g,',') + decimal;
+}
