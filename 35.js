@@ -13,8 +13,7 @@ parseQueryString('https://scriptoj.com/problems?offset=100&limit=10')
  */
 
 const parseQueryString = (url) => {
-  if(url.indexOf("=") === -1) return {};
-  const search = url.split(/[\?#]/g)[1] ? url.split(/[\?#]/g)[1] : url.split(/[\?#]/g)[2];
+  const search = (url.replace((url.match(/#.*/) || [])[0], '').match(/\?.*/) || [])[0] || "";
   return (search.match(/[^\?&]([^&]+)|[^?&=]+(=([^&]*))/g) || []).reduce((pre, cur) => (pre[cur.slice(0, cur.indexOf('=')>>>0)] = cur.indexOf('=') !== -1 ? cur.slice((cur.indexOf('=') >>> 0) + 1) : null, pre), {})
 }
-parseQueryString("https://scriptoj.com/problems/#?offset=10&limit=100"); // {}
+
