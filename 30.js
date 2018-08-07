@@ -41,7 +41,10 @@ var curry = function (f) {
 }
 // ES6
 const curry = (fn, arity = fn.length, ...args) =>
-  arity <= args.length ? fn(...args) : curry.bind(void 0, fn, arity, ...args);
+  arity <= args.length ? 
+  fn(...args) 
+  :
+  curry.bind(void 0, fn, arity, ...args); // 用于吃参数
 
 const f = (a, b, c, d) => (a+b+c+d)
 const curried = curry(f)
