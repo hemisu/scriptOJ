@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="pig">
+    <div class="pig">
+      <div class="pig">
+        <div class="pig"></div>
+      </div>
+      <div class="pig">
+        <div class="pig"></div>
+      </div>
+      <div class="pig">
+        <div class="pig"></div>
+      </div>
+    </div>
+    <div class="pig">
+      <div class="pig"></div>
+      <div class="pig"></div>
+    </div>
+    <div class="pig">
+      <div class="pig">
+        <div class="pig"></div>
+        <div class="pig"></div>
+        <div class="pig"></div>
+        <div class="pig"></div>
+        <div class="pig"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $dom = document.getElementsByClassName('pig')[0];
+    const findMostProductivePigChildrenCount = (dom) => {
+      let quque = [...dom.children];
+      const result = [dom.children.length];
+      while (quque.length) {
+        let temp = [];
+        result.push(Math.max(...quque.map(v => v.children.length)))
+        quque.forEach(v => temp.push(...v.children))
+        quque = temp;
+      }
+      return result
+    }
+    console.log(findMostProductivePigChildrenCount($dom))
+  </script>
+</body>
+
+</html>
